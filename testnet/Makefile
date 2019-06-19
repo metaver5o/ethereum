@@ -16,10 +16,10 @@ build:
 
 run:
 	@echo 'running ${CONTAINER_NAME}'
-	docker run --rm -dit --name ${CONTAINER_NAME} -p8545:8545 ${NAME} 
+	docker run -dit --name ${CONTAINER_NAME} -v $(PWD)/root/:/root/ -p8545:8545 ${NAME} 
 
 exec:
-	docker exec -ti ${CONTAINER_NAME} "geth --rpc --rpcaddr="0.0.0.0" --testnet --fast --cache=512 console"
+	docker exec -w /home/eth_user -ti ${CONTAINER_NAME} "/usr/bin/geth --rpc --rpcaddr="0.0.0.0" --testnet --cache=512 console"
 
 # release: 
 #   	docker login -u ${CI_REGISTRY_USER} -p ${CI_REGISTRY_PASSWORD} ${CI_REGISTRY}
