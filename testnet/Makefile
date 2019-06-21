@@ -34,3 +34,6 @@ logs:
 
 shell:
 	docker exec -ti --user root $(CONTAINER_NAME) bash
+
+restart:
+	docker restart $(CONTAINER_NAME)
